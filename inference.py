@@ -43,6 +43,21 @@ def run_inference():
     hf_token = os.getenv("HF_TOKEN", settings.HF_TOKEN)
     env_url = settings.ENV_URL
 
+    # 0. Wait for server readiness
+    max_retries = 30
+    for i in range(max_retries):
+        try:
+            res = requests.get(env_url, timeout=2)
+            if res.status_code == 200:
+                print(f"Server is ready at {env_url}")
+                break
+        except Exception:
+            pass
+        if i == max_retries - 1:
+            print(f"Error: Server not ready at {env_url} after {max_retries} seconds.")
+            return
+        time.sleep(1)
+
     client = OpenAI(base_url=api_base, api_key=hf_token)
 
     # 1. Fetch Tasks

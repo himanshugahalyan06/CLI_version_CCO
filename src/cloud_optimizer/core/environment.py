@@ -73,7 +73,7 @@ class CloudOptimizerEnv:
         step_reward -= cost_incurred
         step_reward -= (dropped_requests * self.penalty_per_drop)
         
-        step_reward = max(-10.0, min(1.0, step_reward))
+        step_reward = max(0.0, min(1.0, step_reward))
         self.total_score += step_reward
 
         reward_obj = Reward(

@@ -18,9 +18,14 @@ env = CloudOptimizerEnv()
 class ResetRequest(BaseModel):
     task_id: str
 
-@app.get("/", include_in_schema=False)
-async def redirect_to_ui():
-    return RedirectResponse(url="/scalar")
+@app.get("/", status_code=200)
+async def health_check():
+    return {
+        "status": "healthy",
+        "env_name": "cloud-cost-optimizer",
+        "version": "0.1.0",
+        "docs": "/scalar"
+    }
 
 @app.get("/tasks")
 async def get_tasks():
