@@ -1,3 +1,12 @@
+---
+title: Cloud Cost Optimiser
+emoji: 🚀
+colorFrom: pink
+colorTo: green
+sdk: docker
+pinned: false
+---
+
 # ☁️ Cloud Cost Optimizer (CCO)
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
